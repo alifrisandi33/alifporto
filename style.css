@@ -743,30 +743,61 @@ footer {
 }
 
 /* === RESPONSIVE FIX UNTUK ANDROID / MOBILE === */
+/* --- FIX RESPONSIVE UNTUK HP --- */
 @media (max-width: 600px) {
 
+  /* NAVBAR */
+  .nav {
+    padding: 15px 20px;
+  }
+
+  .nav ul {
+    gap: 12px;
+  }
+
+  .nav a {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  /* HERO TITLE */
+  .hero h1 {
+    font-size: 2rem !important;
+  }
+
+  .hero p {
+    font-size: 1rem !important;
+  }
+
+  /* LABEL HERO */
   .hero-label {
-    top: 20px;
-    left: 20px;
-    font-size: 16px;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-4deg);
     padding: 10px 20px;
+    font-size: 16px;
   }
 
-  .label-anchor {
-    top: 55px;
-    left: 150px;
-  }
-
+  /* LANYARD */
   .lanyard {
-    top: 78px;
-    left: 132px;
-    height: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 110px;
+    top: 130px;
   }
 
+  /* ID CARD */
   .floating-idcard {
-    top: 180px;
-    left: 40px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 140px;
     height: 200px;
+    top: 230px;
+  }
+
+  .hero {
+    padding-top: 300px;
   }
 }
+
+
