@@ -1,0 +1,164 @@
+/* --- POSITION FIX FOR WINTER TECH BUBBLE --- */
+.hero {
+    /* Tambahkan perspektif agar ilusi 3D (melengkung) berfungsi */
+    perspective: 800px; 
+}
+
+.hero-label {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    transform: rotate(-6deg);
+    background: rgba(255,255,255,0.15);
+    padding: 14px 28px;
+    border-radius: 14px;
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* titik gantungan */
+.label-anchor {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: transparent;
+    top: 70px;
+    left: 240px;
+}
+
+/* === GRUP AYUNAN (induk: Tali) === */
+.hang-group {
+    position: absolute;
+    top: 99px;
+    left: 100px;
+    transform-origin: top center;
+    /* Ayunan Cepat (Rotasi Z) */
+    transform: rotateZ(5deg); 
+    animation: sway-fast 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+/* tali lanyard */
+.lanyard {
+    width: 3px;
+    height: 150px;
+    background: #fff;
+    margin: 0 auto;
+    border-radius: 2px;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
+    position: relative; 
+    z-index: 10;
+    transform: rotateZ(1deg) rotateX(20deg); 
+    transform-origin: top center; 
+    animation: lanyard-sway 1.5s ease-in-out infinite alternate; 
+    animation-delay: 0.1s;
+}
+.lanyard::before {
+    content: ""; 
+    position: absolute;
+    top: -6px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 8px; 
+    height: 8px;
+    background: #000; 
+    border-radius: 50%; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.lanyard::after {
+    content: "";
+    position: absolute;
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 8px; 
+    height: 8px;
+    background: #000; 
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* --- ID CARD FLIP STYLES --- */
+
+/* 2. WRAPPER AYUNAN (Induk untuk Sway-Slow) */
+.sway-wrapper {
+    width: 180px; /* Tentukan dimensi kartu di sini */
+    height: 260px; /* Tentukan dimensi kartu di sini */
+    margin-top: -10px;
+    
+    /* PENTING: Mempertahankan konteks 3D untuk elemen anak */
+    transform-style: preserve-3d;
+    
+    /* Animasi gerakan lambat (SWAY) */
+    animation: sway-slow 5s ease-out infinite alternate;
+    animation-delay: 0.6s;
+    transform-origin: top center;
+    position: relative;
+}
+
+/* --- FIX FINAL UNTUK FLIP KARTU --- */
+
+/* Container flip */
+.idcard-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+}
+
+/* Sisi depan */
+.idcard-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 18px;
+    overflow: hidden;
+    transform: rotateY(0deg);
+}
+
+/* Sisi belakang */
+.idcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 18px;
+    overflow: hidden;
+    transform: rotateY(180deg);
+}
+
+/* Flip */
+.idcard-container.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Gambar */
+.idcard-front img,
+.idcard-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* --- ANIMASI KEYFRAMES --- */
+@keyframes sway-fast {
+    0%   { transform: rotateZ(-2deg); } 
+    50%  { transform: rotateZ(2deg); }
+    100% { transform: rotateZ(-2deg); }
+}
+
+@keyframes sway-slow {
+    0%   { transform: rotateZ(-2deg); } 
+    50%  { transform: rotateZ(2deg); }
+    100% { transform: rotateZ(-2deg); }
+}
+
+@keyframes lanyard-sway {
+    0% { transform: translateY(0) scaleX(1) scaleY(1); }
+    50% { transform: translateY(2px) scaleX(1.1) scaleY(0.99); }
+    100% { transform: translateY(0) scaleX(1) scaleY(1); }
+}
